@@ -1,0 +1,4 @@
+services:
+   soulbound_aws_cloud_search:
+       class: Soulbound\AWSCloudSearchBundle\Services\CloudSearchDomainService
+       arguments: ["@service_container"]

@@ -1,0 +1,21 @@
+{
+    "name":         "soulbound/aws-cloudsearch-bundle",
+    "description":  "A Symfony2 Bundle for interfacing with AWS CloudSearch",
+    "keywords":     ["amazon", "aws", "web services", "aws-sdk-php", "cloudsearch"],
+    "license":      "MIT",
+    "authors": [
+        {
+          "name":   "Alvise Dandolo",
+          "email":  "alvise.dandolo@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "symfony/framework-bundle": "~2.8",
+        "aws/aws-sdk-php-symfony": "~1.0"
+    },
+    "autoload": {
+        "psr-0": { "AWSCloudSearchBundle": "" }
+    },
+    "target-dir": "AWSCloudSearchBundle"
+}
