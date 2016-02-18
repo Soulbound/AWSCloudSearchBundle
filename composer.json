@@ -15,7 +15,6 @@
         "aws/aws-sdk-php-symfony": "~1.0"
     },
     "autoload": {
-        "psr-0": { "AWSCloudSearchBundle": "" }
-    },
-    "target-dir": "AWSCloudSearchBundle"
+        "psr-0": { "Soulbound\\AWSCloudSearchBundle": "" }
+    }
 }
