@@ -22,19 +22,20 @@ class UploadBuilder {
 		$this->operations = array();
 	}
 
-	public function add($type, $data){
+	public function add($type, $id, $fields = null){
 		if( in_array($type, array('add', 'delete')) ){
 			$operation = array(
-				"type" => $type,
-				"fields" => array()
+				'type' => $type
 			);
-			foreach($data as $property => $value){
-				if( $property == "id" ){
-					$operation['id'] = $value;
-				}else{
-					$operation['fields'][$property] = $value;
-				}
+
+			if( !is_null($id) ){
+				$operation['id'] = $id;
 			}
+
+			if( is_array($fields) ){
+				$operation['fields'] = $fields;
+			}
+
 			$this->operations[] = $operation;
 		}else{
 			throw new \Exception('Operation type not supported.');

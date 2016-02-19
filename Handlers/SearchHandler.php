@@ -35,6 +35,19 @@ class SearchHandler {
 		return $this->result->get('hits')['hit'];
 	}
 
+// [{"id":"Nycticorax nycticorax","label":"Black-crowned Night Heron","value":"Black-crowned Night Heron"}]
+	public function getAutocompleteResults(){
+		$results = array();
+		foreach( $this->result->get('hits')['hit'] as $hit ){
+			$results[] = array(
+				"id" => $hit['id'],
+				"label" => $hit['fields']['title'][0],
+				"value" => "/".$hit['fields']['title'][0],
+			);
+		}
+		return $results;
+	}
+
 	public function getStatusCode(){
 		return $this->result->get('@metadata')['statusCode'];
 	}
