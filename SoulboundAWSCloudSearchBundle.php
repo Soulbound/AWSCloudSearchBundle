@@ -1,6 +1,6 @@
 <?php
 
-namespace Soulbound\AWSCloudSearchBundle;
+namespace SAWSCS;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

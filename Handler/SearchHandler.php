@@ -1,6 +1,6 @@
 <?php
 
-namespace Soulbound\AWSCloudSearchBundle\Handlers;
+namespace SAWSCS\Handler;
 
 class SearchHandler {
 
@@ -11,7 +11,7 @@ class SearchHandler {
 		if( is_a($result, "Aws\Result") ){
 			$this->result = $result;
 		}else{
-			throw new \Exception('Search returned an invalid object.');
+			throw new \Exception('API returned an invalid object.');
 		}
 	}
 

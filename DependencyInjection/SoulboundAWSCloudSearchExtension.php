@@ -1,6 +1,6 @@
 <?php
 
-namespace Soulbound\AWSCloudSearchBundle\DependencyInjection;
+namespace SAWSCS\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -22,7 +22,13 @@ class SoulboundAWSCloudSearchExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+        $container->setParameter( 'sawscs_config', $config );
+
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+    }
+
+    public function getNamespace(){
+        return "sawscs";
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Soulbound\AWSCloudSearchBundle\DependencyInjection;
+namespace SAWSCS\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,11 +18,34 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('soulbound_aws_cloudsearch');
+        $rootNode = $treeBuilder->root('sawscs');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode
+            ->children()
+                ->arrayNode('credentials')
+                    ->children()
+                        ->scalarNode('aws_key')->end()
+                        ->scalarNode('aws_secret')->end()
+                    ->end()
+                ->end()
+                ->scalarNode('default_domain')->end()
+                ->scalarNode('aws_region')->end()
+                ->scalarNode('aws_version')->end()
+                ->arrayNode('domains')
+                    ->prototype('array')
+                        ->children()
+                            ->arrayNode('credentials')
+                                ->children()
+                                    ->scalarNode('aws_key')->end()
+                                    ->scalarNode('aws_secret')->end()
+                                ->end()
+                            ->end()
+                            ->scalarNode('aws_region')->end()
+                            ->scalarNode('aws_version')->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end();
 
         return $treeBuilder;
     }

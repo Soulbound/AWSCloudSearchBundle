@@ -1,4 +1,16 @@
 services:
-   soulbound_aws_cloudsearch:
-       class: Soulbound\AWSCloudSearchBundle\Services\CloudSearchDomainService
-       arguments: ["@service_container"]
+    sawscs:
+        class: SAWSCS\Service\CloudSearchService
+        arguments: ["@service_container", "%sawscs_config%"]
+    sawscsd:
+        class: SAWSCS\Service\CloudSearchDomainService
+        arguments: ["@service_container", "%sawscs_config%"]
+
+    sawscs.event_listener:
+        class: SAWSCS\EventListener\DomainListener
+        arguments: ["@service_container"]
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
+            - { name: doctrine.event_listener, event: postUpdate }
+            - { name: doctrine.event_listener, event: preRemove }
+            - { name: doctrine.event_listener, event: postFlush }

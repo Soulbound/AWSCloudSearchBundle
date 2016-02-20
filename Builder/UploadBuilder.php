@@ -1,6 +1,6 @@
 <?php
 
-namespace Soulbound\AWSCloudSearchBundle\Builders;
+namespace SAWSCS\Builder;
 
 use Aws\AwsClient;
 
@@ -11,14 +11,10 @@ class UploadBuilder {
 	private $contentType;
 	private $operations;
 
-	public function __construct(AwsClient $client, $settings = array()){
+	public function __construct(AwsClient $client){
 		$this->client = $client;
-
-		if(!is_array($settings)){
-			throw new \Exception('__construct requires the second parameter to be either an array or omitted entirely.');
-		}
-
-		$this->contentType = (isset($settings['contentType']) && is_string($settings['contentType'])) ? $settings['contentType'] : "application/json";
+		
+		$this->contentType = "application/json";
 		$this->operations = array();
 	}
 
@@ -64,6 +60,8 @@ class UploadBuilder {
 		if( empty($this->operations) ){
 			throw new \Exception('You can`t run an empty update.');
 		}
+
+		var_dump($this->generateJson());
 
 		$this->client->uploadDocuments(array(
             'contentType' => $this->contentType,

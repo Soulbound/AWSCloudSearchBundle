@@ -1,6 +1,6 @@
 <?php
 
-namespace Soulbound\AWSCloudSearchBundle\Controller;
+namespace SAWSCS\Controller;
 
 // Annotations
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -19,7 +19,7 @@ class AjaxController extends Controller
      */
     public function searchAction(Request $request)
     {
-    	$results = (!empty($request->query->get('term'))) ? $this->container->get('soulbound_aws_cloudsearch')->simpleSearch($request->query->get('term'))->getAutocompleteResults() : array();
+    	$results = (!empty($request->query->get('term'))) ? $this->container->get('sawscsd')->simpleSearch($request->query->get('term'))->getAutocompleteResults() : array();
 
         $returnResponse = new Response(json_encode($results));
         $returnResponse->headers->set('Content-Type', 'application/json');
